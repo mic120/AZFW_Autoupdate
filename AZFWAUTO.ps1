@@ -146,6 +146,8 @@ foreach($bkar in $bkarules){
         }
         }
 
+            Add-Content -Path $Applicationconf -value "$acmd10$bkalistvarno"
+
 $bknrules = $bkrules.resources.properties.networkRuleCollections
 
 #Var Initialize
@@ -160,7 +162,7 @@ foreach($bknr in $bknrules){
             $bknipstemp = $sk.destinationAddresses -join ","
             $bkdestport2 = $sk.destinationPorts -join ","
 
-            $bknvarno = "`$BKNetRule$vkncount"
+            $bknvarno = "`$BKNetRule$bkncount"
             $bknname = $sk.name
             $bknsrcad = $bknsrcadtemp
             $bkntarget = $bknipstemp
@@ -176,6 +178,8 @@ foreach($bknr in $bknrules){
     write-host $sk.protocols
     }
 }
+
+            Add-Content -Path $networkconf -value "$ncmd10$bknlistvarno"
 
             Add-Content -Path $Applicationconf -value "`$Azfw.ApplicationRuleCollections.Add(`$AppRuleCollection)"
             Add-Content -Path $Applicationconf -value "Set-AzFirewall -AzureFirewall `$Azfw"
